@@ -9,3 +9,10 @@
     --second-modal-color: rgba(34,34,34,0.85);
     --container-width: 1200px;
 }
+
+html{
+    box-sizing:border-box;
+    font-family: var(--main-font);
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+}
