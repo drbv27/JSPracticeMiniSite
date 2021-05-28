@@ -31,10 +31,15 @@ export function alarm(sound,btnPlay,btnStop) {
             alarmTempo = setTimeout(() =>{
                 $alarm.play();
             },2000);
+
+            e.target.disabled=true;
         }
         
         if(e.target.matches(btnStop)){
-
+            clearTimeout(alarmTempo);
+            $alarm.pause();
+            $alarm.currentTime = 0;
+            d.querySelector(btnPlay).disabled=false;
         }
     })
 }
