@@ -12,4 +12,12 @@ export function shortcuts(e){
     if (e.key === "a" && e.altKey){
         alert("Haz lanzado una alerta con el teclado, combinando alt + a");
     }
+    
+    if (e.key === "c" && e.altKey){
+        confirm("Haz lanzado una confirmación con el teclado, combinando alt + c");
+    }
+    if (e.key === "p" && e.altKey){
+        prompt("Haz lanzado un prompt con el teclado, combinando alt + p");
+    }
+
 }
