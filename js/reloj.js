@@ -20,6 +20,21 @@ export function digitalClock(clock,btnPlay,btnStop) {
         }
     })
 }
-export function alarm() {
 
+export function alarm(sound,btnPlay,btnStop) {
+    let alarmTempo;
+    const $alarm = d.createElement("audio");
+    $alarm.src = sound;
+
+    d.addEventListener("click", (e)=>{
+        if(e.target.matches(btnPlay)){
+            alarmTempo = setTimeout(() =>{
+                $alarm.play();
+            },2000);
+        }
+        
+        if(e.target.matches(btnStop)){
+
+        }
+    })
 }
