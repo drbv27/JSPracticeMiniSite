@@ -16,5 +16,13 @@ export default function scrollTopButton(btn){
         console.log(w.pageYOffset,d.documentElement.scrollTop);
     });
 
-    d.addEventListener("click",e =>{});
+    d.addEventListener("click",e =>{
+        if(e.target.matches(btn)){
+            w.scrollTo({
+                behavior :"smooth",
+                top : 0,
+                //left:0,
+            });
+        }
+    });
 }
