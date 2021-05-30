@@ -187,3 +187,8 @@ img{
     background-color: var(--second-color);
     color: var(--main-color);
 }
+
+.dark-mode{
+    background-color: var(--second-color);
+    color:var(--main-color)
+}
