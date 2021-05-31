@@ -20,5 +20,9 @@ export default function darkTheme(btn,classDark){
                 $themeBtn.textContent = moon;
             }
         }
+    });
+
+    d.addEventListener("DOMContentLoaded",e=>{
+        alert("HOLA desde la funcion darktheme")
     })
 }
