@@ -11,8 +11,9 @@ export default function responsiveMedia(id,mq,mobileContent,desktopContent){
             d.getElementById(id).innerHTML= mobileContent;
         }
 
-        console.log(e.matches);
+        //console.log(e.matches);
     };
 
-    breakpoint.addListener(responsive)
+    breakpoint.addListener(responsive);
+    responsive(breakpoint);
 }
