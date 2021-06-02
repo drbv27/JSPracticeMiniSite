@@ -47,4 +47,26 @@ export default function userDeviceInfo(id){
     <li>Navegador: <b>${isBrowser.any()}</b></li>
     </ul>
     `;
+
+    /*Contenido Exclusivo*/
+    if(isBrowser.chrome()){
+        $id.innerHTML += `<p><mark>Este contenido es excluisvo para Chrome</mark></p>`;
+    }
+    if(isBrowser.firefox()){
+        $id.innerHTML += `<p><mark>Este contenido es excluisvo para Firefox</mark></p>`;
+    }
+    if(isDesktop.linux()){
+        $id.innerHTML += `<p><mark>Descarga nuestro software para linux</mark></p>`;
+    }
+    if(isDesktop.mac()){
+        $id.innerHTML += `<p><mark>Descarga nuestro software para mac</mark></p>`;
+    }
+    if(isDesktop.windows()){
+        $id.innerHTML += `<p><mark>Descarga nuestro software para windows</mark></p>`;
+    }
+
+    /*Redirecciones*/
+    if (isMobile.android()){
+        window.location.href = "https://google.com"
+    }
 }
