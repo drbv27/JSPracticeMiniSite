@@ -44,6 +44,7 @@ export default function userDeviceInfo(id){
     <li>Plataforma: <b>${
         isMobile.any()?isMobile.any():isDesktop.any()
     }</b></li>
+    <li>Navegador: <b>${isBrowser.any()}</b></li>
     </ul>
     `;
 }
