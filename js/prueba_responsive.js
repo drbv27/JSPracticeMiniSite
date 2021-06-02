@@ -15,4 +15,8 @@ export default function responsiveTester(form){
         );
         }
     });
+
+    d.addEventListener("click",e=>{
+        if(e.target === $form.cerrar)tester.close();
+    });
 }
