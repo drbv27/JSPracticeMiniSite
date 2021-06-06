@@ -24,7 +24,7 @@ export default function scrollSpy(){
     const observer = new IntersectionObserver(cb,{
         //root,
         //rootMargin:"-250px",
-        threshold:0.5
+        threshold:[0.5,0.75]//puede ser solo 0.5 sin [] diciendole que se vea el 50%
     });
     //console.log("observer",observer)
 
