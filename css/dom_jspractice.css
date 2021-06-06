@@ -245,6 +245,7 @@ img{
 /* *****Responsive Slider***** */
 .slider{
     position: relative;
+    border: thin solid black;
     width: 80%;
     margin: 1rem auto;
     text-align: center;
@@ -255,7 +256,7 @@ img{
     height: 400px;
 }
 
-.slider-slides{
+.slider-slide {
     position: absolute;
     top: 0;
     left: 0;
@@ -276,6 +277,16 @@ img{
 .slider-slide.active{
     opacity: 1;
     visibility: visible;
+}
+
+.slider-btns {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 .slider a {
