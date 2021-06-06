@@ -239,3 +239,12 @@ img{
     opacity: 0;
     order:1;
 }
+
+
+/* *****Responsive Slider***** */
+.slider{
+    position: relative;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+}
