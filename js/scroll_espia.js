@@ -21,7 +21,10 @@ export default function scrollSpy(){
     }
 
 
-    const observer = new IntersectionObserver(cb,{});
+    const observer = new IntersectionObserver(cb,{
+        //root
+        rootMargin:"-250px"
+    });
     //console.log("observer",observer)
 
     $sections.forEach(el=>observer.observe(el));
