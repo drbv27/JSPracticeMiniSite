@@ -361,3 +361,12 @@ img{
         left: calc(4.25rem + 1vw);
     }
 }
+
+/* *****Responsive Slider***** */
+video {
+    position: relative;
+    border: thin solid black;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+}
