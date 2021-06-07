@@ -32,7 +32,7 @@
               <a href="#seccion11" data-scroll-spy>Sorteo Digital</a>
               <a href="#seccion12" data-scroll-spy>Responsive Slider</a>
               <a href="#seccion13" data-scroll-spy>Video Inteligente</a>
-              <a href="#seccion14" data-scroll-spy>Sección 10</a>
+              <a href="#seccion14" data-scroll-spy>Validaciones de Formulario</a>
               <a href="#seccion15" data-scroll-spy>Sección 10</a>
           </nav>
       </aside>
@@ -199,10 +199,21 @@
               <br>
               <br>
               <br>
+              <br>
+              <br>
+              <br>
+              <br>
               <video src="./assets/MaleHands.mp4" muted controls loop data-smart-video></video>
           </section>
           <section id="seccion14" class="section" data-scroll-spy>
-              <h2>Sección 10</h2>
+              <h2>Validaciones de Formulario</h2>
+              <form class="contact-form">
+                  <legend>Envianos tus comentarios</legend>
+                  <input type="text" name="name" placeholder="Escribe tu nombre"
+                  title="El campo nombre solo recibe letras y espacios en blanco."
+                  pattern ="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                  <input type="submit" value="Enviar">
+              </form>
           </section>
           <section id="seccion15" class="section" data-scroll-spy>
               <h2>Sección 10</h2>
