@@ -11,6 +11,12 @@ export default function smartVideo(){
             } else {
                 entry.target.pause();
             }
+
+            w.addEventListener("visibilitychange", (e) =>
+            d.visibilityState === "visible"
+                ?entry.target.play()
+                :entry.target.pause()
+            );
         });
     };
 
