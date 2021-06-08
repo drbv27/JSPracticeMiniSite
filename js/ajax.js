@@ -10,6 +10,18 @@
 
         if(xhr.status >= 200 && xhr.status < 300){
             console.log("exito");
+            //console.log(xhr.responseText);
+            //$xhr.innerHTML = xhr.responseText;
+            let json =JSON.parse(xhr.responseText);
+            console.log(json);
+
+            json.forEach(el => {
+                const $li = document.createElement("li");
+                $li.innerHTML = `${el.name} -- ${el.email} -- ${el.phone}`;
+                $fragment.appendChild($li);
+            });
+
+            $xhr.appendChild($fragment);
         }else{
             console.log("error");
         }
