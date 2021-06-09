@@ -24,6 +24,8 @@
             $xhr.appendChild($fragment);
         }else{
             console.log("error");
+            let message = xhr.statusText || "Ocurrio un error";
+            $xhr.innerHTML = `Error ${xhr.status}: ${message}`;
         }
 
     });
