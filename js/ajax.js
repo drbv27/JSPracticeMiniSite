@@ -27,10 +27,26 @@
             let message = xhr.statusText || "Ocurrio un error";
             $xhr.innerHTML = `Error ${xhr.status}: ${message}`;
         }
-
+        console.log("Este mensaje cargará de cualquier forma");
     });
 
     xhr.open("GET","https://jsonplaceholder.typicode.com/users");
 
     xhr.send();
+})();
+
+
+(() => {
+    const $fetch = document.getElementById("fetch"),
+    $fragment = document.createDocumentFragment();
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+        .then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        }).finally(() => 
+            console.log("Esto se ejeecutará independientemente del resultado de la promesa Fetch"
+        )
+    );
 })();
