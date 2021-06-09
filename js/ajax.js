@@ -43,8 +43,13 @@
     fetch("https://jsonplaceholder.typicode.com/users")
         .then(res => {
             console.log(res);
-        }).catch(err => {
-            console.log(err);
+            return res.ok ? res.json() : Promise.reject(res);
+        })
+        .then(json => {
+            console.log(json);
+        })
+        .catch(err => {
+            console.log("Estamos en el catch",err);
         }).finally(() => 
             console.log("Esto se ejeecutará independientemente del resultado de la promesa Fetch"
         )
