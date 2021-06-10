@@ -79,10 +79,38 @@
                 json = await res.json();
 
                 console.log(res,json);
+
+                //if(!res.ok) throw new Error("Ocurrio un error al solicitar los datos")
+                if(!res.ok) throw {status: res.status, statusText: res.statusText}
+
+                json.forEach(el => {
+                    const $li = document.createElement("li");
+                    $li.innerHTML = `${el.name} -- ${el.email} -- ${el.phone}`;
+                    $fragment.appendChild($li);
+                });
+    
+                $fetchAsync.appendChild($fragment);
         } catch (err) {
+            console.log("Estoy en el catch",err);
+            let message = err.statusText || "Ocurrio un error";
+            $fetchAsync.innerHTML = `Error ${err.status}: ${message}`;
         } finally {
+            console.log("Esto se ejecuta si o si")
         }
     }
 
     getData();
 })();
+
+//Axios
+
+(() => {
+    const $axios = document.getElementById("axios"),
+        $fragment = document.createDocumentFragment();
+
+    axios
+    .get("https://jsonplaceholder.typicode.com/users")
+    .then()
+    .catch()
+    .finally();
+})()
