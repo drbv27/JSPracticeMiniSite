@@ -145,7 +145,15 @@
             let res = await axios.get("https://jsonplaceholder.typicode.com/users"),
             json = await res.data;
 
-            console.log(res,json);
+            //console.log(res,json);
+
+            json.forEach(el => {
+                const $li = document.createElement("li");
+                $li.innerHTML = `${el.name} -- ${el.email} -- ${el.phone}`;
+                $fragment.appendChild($li);
+            });
+    
+            $axiosAsync.appendChild($fragment);
         } catch (err) {
             console.log(err.response);
             let message = err.response.statusText || "Ocurrio un error";
