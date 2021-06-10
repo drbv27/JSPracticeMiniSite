@@ -147,7 +147,9 @@
 
             console.log(res,json);
         } catch (err) {
-            
+            console.log(err.response);
+            let message = err.response.statusText || "Ocurrio un error";
+            $axiosAsync.innerHTML = `Error ${err.response.status}: ${message}`;
         } finally {
             console.log("Esto se ejecuta si o si");
         }
