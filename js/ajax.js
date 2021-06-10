@@ -165,3 +165,5 @@
 
     getData();
 })();
+
+/* ******CRUD WITH DIFFERENTS METHODS***** */
