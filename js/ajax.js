@@ -123,7 +123,9 @@
         $axios.appendChild($fragment);
     })
     .catch(err => {
-        console.log("Estamos en el catch",err);
+        console.log(err.response);
+        let message = err.response.statusText || "Ocurrio un error";
+         $axios.innerHTML = `Error ${err.response.status}: ${message}`;
     })
     .finally(() => {
         console.log("Esto se ejecuta si o si");
