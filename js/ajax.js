@@ -110,7 +110,22 @@
 
     axios
     .get("https://jsonplaceholder.typicode.com/users")
-    .then()
-    .catch()
-    .finally();
-})()
+    .then(res => {
+        console.log(res);
+        let json = res.data; //solo conservo el nombre pero no es un json
+
+        json.forEach(el => {
+            const $li = document.createElement("li");
+            $li.innerHTML = `${el.name} -- ${el.email} -- ${el.phone}`;
+            $fragment.appendChild($li);
+        });
+
+        $axios.appendChild($fragment);
+    })
+    .catch(err => {
+        console.log("Estamos en el catch",err);
+    })
+    .finally(() => {
+        console.log("Esto se ejecuta si o si");
+    });
+})();
