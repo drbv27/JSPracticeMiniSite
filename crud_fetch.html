@@ -60,6 +60,14 @@
                     if(!res.ok) throw {status: res.status, statusText: res.statusText};
 
                     console.log(json);
+                    json.forEach(el=>{
+                        $template.querySelector(".name").textContent = el.nombre;
+                        $template.querySelector(".constellation").textContent = el.constelacion;
+
+                        let $clone = d.importNode($template,true);
+                        $fragment.appendChild($clone);
+                    });
+                    $table.querySelector("tbody").appendChild($fragment);
 
                 } catch (err) {
                     let message = err.statusText || "Ocurrio un error";
