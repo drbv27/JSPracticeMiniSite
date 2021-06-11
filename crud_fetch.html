@@ -52,6 +52,23 @@
             $template = d.getElementById("crud-template").content,
             $fragment = d.createDocumentFragment();
 
+            const getAll= async()=>{
+                try {
+                   let res = await fetch("http://localhost:5000/santos"),
+                    json = await res.json();
+
+                    if(!res.ok) throw {status: res.status, statusText: res.statusText};
+
+                    console.log(json);
+
+                } catch (err) {
+                    let message = err.statusText || "Ocurrio un error";
+                    $table.insertAdjacentHTML("afterend",`<p><b>Error:${err.status}:${message}</b></p>`)
+                }
+            }
+
+            d.addEventListener("DOMContentLoaded",getAll);
+
     </script>
 </body>
 
