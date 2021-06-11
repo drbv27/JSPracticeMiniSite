@@ -145,7 +145,17 @@
                     $form.id.value = e.target.dataset.id;
                 }
                 if(e.target.matches(".delete")){
-                    alert("Presionaste en Eliminar")
+                    let isDelete = confirm(`Estas seguro de eliminar el id ${e.target.dataset.id}?`);
+
+                    if(isDelete){
+                        //DELETE
+                        ajax({
+                            url:`http://localhost:5000/santos/${e.target.dataset.id}`,
+                            method:"DELETE",
+                            success:(res)=>location.reload(),
+                            error:()=> alert(err)
+                        });
+                    }
                 }
 
             })
