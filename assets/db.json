@@ -49,6 +49,11 @@
       "nombre": "Dokho",
       "constelacion": "Libra",
       "id": 25
+    },
+    {
+      "nombre": "Milo",
+      "constelacion": "Escorpio",
+      "id": 26
     }
   ],
   "dioses": [
