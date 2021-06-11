@@ -48,7 +48,7 @@
         const d = document,
             $table = d.querySelector(".crud-table"),
             $form = d.querySelector(".crud-form"),
-            $title = d.querySelector(".crud-tile"),
+            $title = d.querySelector(".crud-title"),
             $template = d.getElementById("crud-template").content,
             $fragment = d.createDocumentFragment();
 
@@ -121,9 +121,33 @@
                         });
                     }else{
                         //Update PUT
+                        ajax({
+                            url:`http://localhost:5000/santos/${e.target.id.value}`,
+                            method:"PUT",
+                            success:(res)=>location.reload(),
+                            error:()=> $form.insertAdjacentHTML("afterend",`<p><b>${err}</b></p>`),
+                            data:{
+                                nombre:e.target.nombre.value,
+                                constelacion:e.target.constelacion.value
+                            }
+                        });
                     }
 
                 }
+            });
+
+            d.addEventListener("click",e=>{
+                if(e.target.matches(".edit")){
+                    /* alert("Presionaste en Editar") */
+                    $title.textContent = "Editar Santo";
+                    $form.nombre.value = e.target.dataset.name;
+                    $form.constelacion.value = e.target.dataset.constellation;
+                    $form.id.value = e.target.dataset.id;
+                }
+                if(e.target.matches(".delete")){
+                    alert("Presionaste en Eliminar")
+                }
+
             })
     </script>
 </body>

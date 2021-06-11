@@ -29,6 +29,16 @@
       "nombre": "Camus",
       "constelacion": "Acuario",
       "id": 6
+    },
+    {
+      "nombre": "Afrodita",
+      "constelacion": "Virgo",
+      "id": 7
+    },
+    {
+      "nombre": "Aldebaran",
+      "constelacion": "Tauro",
+      "id": 8
     }
   ],
   "dioses": [
