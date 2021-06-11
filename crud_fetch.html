@@ -125,7 +125,7 @@
                                 json = await res.json();
 
                             if(!res.ok) throw {status: res.status, statusText: res.statusText};
-                            
+
                             location.reload();
                         } catch (err) {
                             let message = err.statusText || "Ocurrio un error";
@@ -135,16 +135,37 @@
                 }
             });
 
-            d.addEventListener("click",e=>{
+            d.addEventListener("click",async e=>{
                 if(e.target.matches(".edit")){
                     $title.textContent = "Editar Santo";
                     $form.nombre.value = e.target.dataset.name;
                     $form.constelacion.value = e.target.dataset.constellation;
                     $form.id.value = e.target.dataset.id;
                 }
+
                 if(e.target.matches(".delete")){
                     let isDelete = confirm(`Estas seguro de eliminar el id ${e.target.dataset.id}?`);
 
+                    if(isDelete){
+                        //DELETE
+                        try {
+                            let options = {
+                                method:"DELETE",
+                                headers:{
+                                    "Content-type":"application/json; charset=utf-8"
+                                }
+                            },
+                                res = await fetch(`http://localhost:5000/santos/${e.target.dataset.id}`,options),
+                                json = await res.json();
+
+                            if(!res.ok) throw {status: res.status, statusText: res.statusText};
+
+                            location.reload();
+                        } catch (err) {
+                            let message = err.statusText || "Ocurrio un error";
+                            alert(`Error${err.status}:${message}`)
+                        }
+                    }
                 }
 
             })
