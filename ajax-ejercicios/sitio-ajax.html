@@ -122,8 +122,19 @@
                 url:"./assets/home.html",
                 success:(html)=>$main.innerHTML = html,
                 error:(err)=>$main.innerHTML = `<h1>${err}</h1>`
-            })
+            });
         });
+
+        d.addEventListener("click",e=>{
+            if(e.target.matches(".menu a")){
+                e.preventDefault();
+                getHTML({
+                    url:e.target.href,
+                    success:(html)=>$main.innerHTML = html,
+                    error:(err)=>$main.innerHTML = `<h1>${err}</h1>`
+                });
+            }
+        })
     </script>
 </body>
 </html>
