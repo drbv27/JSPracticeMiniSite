@@ -126,7 +126,6 @@
                 setTimeout(()=>{
                     $main.removeChild($progress);
                     $main.removeChild($span);
-                    $files.value = "";
                 },3000)
             });
         }
@@ -143,7 +142,14 @@
             e.stopPropagation();
             e.target.classList.remove("is-active");
         });
-        $dropZone.addEventListener("drop",e=>{});
+        $dropZone.addEventListener("drop",e=>{
+            //console.log(e);
+            e.preventDefault();
+            e.stopPropagation();
+            const files = Array.from(e.dataTransfer.files);
+            files.forEach(el => progressUpload(el));
+            e.target.classList.remove("is-active");
+        });
     </script>
 </body>
 </html>
