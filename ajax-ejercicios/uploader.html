@@ -35,8 +35,6 @@
 <body>
     <main>
         <input type="file" id="files" name="files" multiple>
-        <progress value="70"></progress>
-        70% - nombreArchivo.txt
     </main>
     <script>
         const d = document,
@@ -84,9 +82,18 @@
             fileReader.addEventListener("progress", e=>{
                 //console.log(e);
                 let progress = parseInt((e.loaded*100)/e.total);
+                $progress.value = progress;
+                $span.innerHTML = `<b>${file.name} - ${progress}%</b>`;
             });
 
-            fileReader.addEventListener("loadend", e=>{});
+            fileReader.addEventListener("loadend", e=>{
+                uploader(file);
+                setTimeout(()=>{
+                    $main.removeChild($progress);
+                    $main.removeChild($span);
+                    $files.value = "";
+                },3000)
+            });
         }
         
         d.addEventListener("change", e=>{
