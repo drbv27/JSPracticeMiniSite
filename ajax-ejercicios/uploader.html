@@ -26,11 +26,17 @@
             text-align: center;
             min-height: 100vh;
         }
+
+        progress {
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
     <main>
         <input type="file" id="files" name="files" multiple>
+        <progress value="70"></progress>
+        70% - nombreArchivo.txt
     </main>
     <script>
         const d = document,
@@ -61,11 +67,33 @@
             xhr.setRequestHeader("enc-type","multipart/form-data");
             xhr.send(formData);
         }
+        
+        const progressUpload = (file) => {
+            const $progress = d.createElement("progress"),
+                $span = d.createElement("span");
+
+            $progress.value = 0;
+            $progress.max = 100;
+
+            $main.insertAdjacentElement("beforeend",$progress);
+            $main.insertAdjacentElement("beforeend",$span);
+
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+
+            fileReader.addEventListener("progress", e=>{
+                //console.log(e);
+                let progress = parseInt((e.loaded*100)/e.total);
+            });
+
+            fileReader.addEventListener("loadend", e=>{});
+        }
+        
         d.addEventListener("change", e=>{
             if(e.target === $files){
                 //console.log(e.target.files);
                 const files = Array.from(e.target.files);
-                files.forEach(el => uploader(el));
+                files.forEach(el => progressUpload(el));
 
             }
         })
