@@ -184,19 +184,18 @@
                         console.log(json);
                         $loader.classList.add("none");
                         $response.classList.remove("none");
+                        $response.innerHTML=`<p>${json.message}</p>`;
                         $form.reset();
                     })
                     .catch(err=>{
-                        console.log(error)
+                        console.log(err);
+                        let message = err.statusText || "Ocurrio un error al enviar, intenta nuevamente";
+                        $response.innerHTML=`<p>error ${err.status}: ${message}</p>`
                     })
-/*                 //simulate the response by time
-                setTimeout(() => {
-                    $loader.classList.add("none");
-                    $response.classList.remove("none");
-                    $form.reset();
-
-                    setTimeout(() => $response.classList.add("none"), 3000);
-                }, 3000); */
+                    .finally(()=> setTimeout(() => {
+                        $response.classList.add("none");
+                        $response.innerHTML="";
+                    }, 3000));
             });
     }
 
