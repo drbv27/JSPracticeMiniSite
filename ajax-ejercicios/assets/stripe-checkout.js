@@ -4,30 +4,25 @@ import STRIPE_KEYS from "./stripe-keys.js"
 const d = document,
     $tacos = d.getElementById("tacos"),
     $template = d.getElementById("taco-template").content,
-    $fragment = d.createDocumentFragment();
-
-fetch("https://api.stripe.com/v1/products",{
-    headers: {
-        Authorization:`Bearer ${STRIPE_KEYS.secret}`,
+    $fragment = d.createDocumentFragment(),
+    fetchOptions = {
+        headers: {
+            Authorization:`Bearer ${STRIPE_KEYS.secret}`,
     },
-})
-.then(res=>{
-    console.log(res);
-    return res.json()
-})
-.then(json=>{
+}
+
+let prices,products;
+
+Promise.all([
+    fetch("https://api.stripe.com/v1/products",fetchOptions),
+    fetch("https://api.stripe.com/v1/prices",fetchOptions)
+])
+.then(responses => Promise.all(responses.map((res)=>res.json())))
+.then(json => {
     console.log(json)
 })
-
-fetch("https://api.stripe.com/v1/prices",{
-    headers: {
-        Authorization:`Bearer ${STRIPE_KEYS.secret}`,
-    },
-})
-.then(res=>{
-    console.log(res);
-    return res.json()
-})
-.then(json=>{
-    console.log(json)
-})
+.catch(err => {
+    console.log(err);
+    let message =  err.statusText || "Ocurrio un error al conectarse con el API de STRIPE"
+    $tacos.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+});
