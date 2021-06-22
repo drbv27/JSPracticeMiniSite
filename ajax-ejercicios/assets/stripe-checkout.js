@@ -51,3 +51,10 @@ Promise.all([
     let message =  err.statusText || "Ocurrio un error al conectarse con el API de STRIPE"
     $tacos.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
 });
+
+d.addEventListener("click", e=>{
+    console.log(e.target);
+    if(e.target.matches(".taco *")){
+        alert("A comprar")
+    }
+})
