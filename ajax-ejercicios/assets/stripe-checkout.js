@@ -39,7 +39,6 @@ Promise.all([
             ${moneyFormat(el.unit_amount_decimal)} ${el.currency}
         `;
 
-
         let $clone = d.importNode($template,true);
         $fragment.appendChild($clone);
     });
@@ -53,8 +52,22 @@ Promise.all([
 });
 
 d.addEventListener("click", e=>{
-    console.log(e.target);
     if(e.target.matches(".taco *")){
-        alert("A comprar")
+        let price = e.target.parentElement.getAttribute("data-price");
+        //console.log(price)
+        Stripe(STRIPE_KEYS.public)
+            .redirectToCheckout({
+                lineItems:[{price ,quantity: 1,}],
+                mode: "subscription",
+                successUrl:"http://127.0.0.1:5500/ajax-ejercicios/assets/stripe-success.html",
+                cancelUrl:"http://127.0.0.1:5500/ajax-ejercicios/assets/stripe-cancel.html",
+
+            })
+                .then(res=>{
+                    console.log(res);
+                    if(res.error){
+                        $tacos.insertAdjacentHTML("afterend",res.error.message);
+            }
+        })
     }
 })
