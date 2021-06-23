@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemons</title>
+    <style>
+        .loader {
+            display: block;
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,8 +27,49 @@
         async function loadPokemons(url){
             try {
                 $main.innerHTML = `<img class="loader" src="../assets/spinning-circles.svg" alt= "Cargando...">`;
+
+                let res = await fetch(url),
+                    json = await res.json(),
+                    $template = "",
+                    $prevLink,
+                    $nextLink;
+
+                console.log(json)
+
+                if(!res.ok) throw { status: res.status,statusText:res.statusText}
+
+                for(let i=0; i<json.results.length; i++){
+                    //console.log(json.results[i]);
+                    try {
+                        let res = await fetch(json.results[i].url),
+                            pokemon = await res.json();
+
+                        console.log(pokemon)
+
+                        if(!res.ok) throw { status: res.status,statusText:res.statusText}
+
+                        $template += `
+                        <figure>
+                            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                            <figcaption>${pokemon.name}</figcaption>
+                        </figure>
+                        `;
+                    } catch (err) {
+                        console.log(err);
+                        let message = err.statusText || "Ocurrio un error";
+                        $template +=`
+                        <figure>
+                            <figcaption>Error ${err.statusText}: ${message}</figcaption>
+                        </figure>
+                        `;
+                    }
+                }
+
+                $main.innerHTML = $template;
             } catch (err) {
-                
+                console.log(err);
+                let message = err.statusText || "Ocurrio un error";
+                $main.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
             }
         }
 
