@@ -59,6 +59,11 @@
                                     $template.querySelector("h3").textContent = el.show.name;
                                     $template.querySelector("div").innerHTML = el.show.summary ? el.show.summary : "Sin descripción";
                                     $template.querySelector("img").src = el.show.image ? el.show.image.medium : "http://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
+                                    $template.querySelector("img").alt = el.show.name;
+                                    $template.querySelector("img").style.maxWidth = "100%";
+                                    $template.querySelector("a").href = el.show.url ? el.show.url: "#";
+                                    $template.querySelector("a").target = el.show.url ? "_blank": "_self";
+                                    $template.querySelector("a").textContent = el.show.url ? "VER MAS": "";
 
                                     let $clone =  d.importNode($template,true);
                                     $fragment.appendChild($clone);
