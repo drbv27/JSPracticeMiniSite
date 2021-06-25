@@ -5,6 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de Canciones</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .loader {
+            display:none;
+            margin: auto;
+        }
+
+        @media screen and (min-width: 800px){
+            main{
+                flex-direction: row;
+            }
+
+            main > * {
+                padding: 1rem;
+                flex-basis: 50%;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Buscador de Canciones</h1>
@@ -17,8 +48,12 @@
     <img class = "loader" src="../assets/spinning-circles.svg" alt="Cargando..">
     <aside class="error"></aside>
     <main>
-        <article class="artist"></article>
-        <article class="song"></article>
+        <article class="artist">
+            <h2>Información del Artista</h2>
+        </article>
+        <article class="song">
+            <h2>Letra de la canción</h2>
+        </article>
     </main>
 
 </body>
