@@ -48,13 +48,30 @@
     <img class = "loader" src="../assets/spinning-circles.svg" alt="Cargando..">
     <aside class="error"></aside>
     <main>
-        <article class="artist">
-            <h2>Información del Artista</h2>
-        </article>
-        <article class="song">
-            <h2>Letra de la canción</h2>
-        </article>
+        <article class="artist"></article>
+        <article class="song"></article>
     </main>
+    <script>
+        const d = document,
+            $form = d.getElementById("song-search"),
+            $loader = d.querySelector(".loader"),
+            $error = d.querySelector(".error"),
+            $main = d.querySelector(".main"),
+            $artist = d.querySelector(".artist"),
+            $song = d.querySelector(".song");
 
+        $form.addEventListener("submit", async e=>{
+            e.preventDefault();
+
+            try {
+              $loader.style.display = "block";  
+            } catch (err) {
+                console.log(err);
+                let message = err.statusText || "Ocuarrio un error";
+                $error.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                $loader.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
