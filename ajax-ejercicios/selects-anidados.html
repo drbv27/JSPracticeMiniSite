@@ -23,10 +23,11 @@
     <script>
         const d = document,
             $selectPrimary = d.getElementById("select-primary"),
-            $selectSecondary = d.getElementById("select-secondary");
+            $selectSecondary = d.getElementById("select-secondary"),
+            token= "ab4d7dc9-ba6a-4a2b-8e9d-f7fe32086722";
 
             function loadStates(){
-                fetch("https://api.copomex.com/query/get_estados?token=ab4d7dc9-ba6a-4a2b-8e9d-f7fe32086722")
+                fetch(`https://api.copomex.com/query/get_estados?token=${token}`)
                 .then(res=>res.ok ? res.json():Promise.reject(res))
                 .then(json=>{
                     console.log(json);
@@ -42,7 +43,19 @@
             }
 
             function loadTowns(state){
-
+                fetch(`https://api.copomex.com/query/get_municipio_por_estado/${state}?token=${token}`)
+                    .then(res=>res.ok ? res.json():Promise.reject(res))
+                    .then(json=>{
+                        console.log(json);
+                        let $options = `<option value="">Elige un municipio</option>`;
+                            json.response.municipios.forEach(el=>$options+=`<option value="${el}">${el}</option>`);
+                            $selectSecondary.innerHTML=$options;
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        let message = err.statusText || "Ocurrio un error";
+                            $selectSecondary.nextElementSibling.innerHTML = `Error ${err.status}:${message}`;
+                    });
             }
 
             d.addEventListener("DOMContentLoaded",loadStates);
