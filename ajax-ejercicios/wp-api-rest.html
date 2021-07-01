@@ -45,13 +45,37 @@
             PAGES = `${API_WP}/pages`,
             CATEGORIES = `${API_WP}/categories`;
 
+        function getSiteData(){
+            fetch(SITE)
+                .then(res => res.ok ? res.json():Promise.reject(res))
+                .then(json =>{
+                    console.log(json);
+                })
+                .catch(err => {
+                    console.log(err);
+                    let message = err.statusText || "Ocurrio un error";
+                    $site.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                });
+        }
 
+        function getPosts(){
+            fetch(POSTS)
+                .then(res => res.ok ? res.json():Promise.reject(res))
+                .then(json =>{
+                    console.log(json);
+                })
+                .catch(err => {
+                    console.log(err);
+                    let message = err.statusText || "Ocurrio un error";
+                    $posts.innerHTML = `<p>Error ${err.status}: ${message}</p>`;
+                    $loader.style.display = "none";
+                });
+        }
 
-        fetch(POSTS)
-            .then(res=>res.ok?res.json():Promise.reject(res))
-            .then(json=>{
-                console.log(json);
-            })
+        d.addEventListener("DOMContentLoaded",e=>{
+            getSiteData();
+            getPosts();
+        });
     </script>
 </body>
 </html>
