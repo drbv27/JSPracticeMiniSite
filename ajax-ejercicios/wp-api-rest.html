@@ -32,9 +32,22 @@
         <hr>
     </template>
     <script>
-        const d = document;
+        const d = document,
+            $site = d.getElementById("site"),
+            $posts = d.getElementById("posts"),
+            $loader = d.querySelector(".loader"),
+            $template = d.getElementById("post-template").content,
+            $fragment = d.createDocumentFragment(),
+            DOMAIN = "https://malvestida.com",
+            SITE = `${DOMAIN}/wp-json`,
+            API_WP = `${SITE}/wp/v2`,
+            POSTS = `${API_WP}/posts`,
+            PAGES = `${API_WP}/pages`,
+            CATEGORIES = `${API_WP}/categories`;
 
-        fetch("https://malvestida.com/wp-json/wp/v2/posts")
+
+
+        fetch(POSTS)
             .then(res=>res.ok?res.json():Promise.reject(res))
             .then(json=>{
                 console.log(json);
