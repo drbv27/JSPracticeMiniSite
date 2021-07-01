@@ -50,6 +50,14 @@
                 .then(res => res.ok ? res.json():Promise.reject(res))
                 .then(json =>{
                     console.log(json);
+                    $site.innerHTML =`
+                        <h3>Sitio Web</h3>
+                        <h2>
+                        <a href="${json.url}" target="_blank">${json.name}</a>    
+                        </h2>
+                        <p>${json.description}</p>
+                        <p>${json.timezone_string}</p>
+                    `;
                 })
                 .catch(err => {
                     console.log(err);
@@ -59,10 +67,22 @@
         }
 
         function getPosts(){
+            $loader.style.display = "block";
+
             fetch(POSTS)
                 .then(res => res.ok ? res.json():Promise.reject(res))
                 .then(json =>{
                     console.log(json);
+                    json.forEach(el=>{
+                        $template.querySelector(".post-title").innerHTML = el.title.rendered;
+
+
+                        let $clone = d.importNode($template,true);
+                            $fragment.appendChild($clone);
+                    });
+
+                    $posts.appendChild($fragment);
+                    $loader.style.display = "none";
                 })
                 .catch(err => {
                     console.log(err);
