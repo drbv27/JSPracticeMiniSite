@@ -29,6 +29,5 @@ export async function Router(){
     }else{
         $main.innerHTML="<h2>Aquí cargará el contenido del post previamente seleccionado</h2>";
     }
-    /* */
     d.querySelector(".loader").style.display = "none";
 }
