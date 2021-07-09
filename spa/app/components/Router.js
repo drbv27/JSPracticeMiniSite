@@ -2,7 +2,7 @@ import api from "../helpers/wp_api.js";
 import {ajax} from "../helpers/ajax.js"
 import { PostCard } from "./PostCard.js";
 
-export function Router(){
+export async function Router(){
     const d = document,
         w = window,
         $main = d.getElementById("main");
@@ -13,13 +13,12 @@ export function Router(){
     $main.innerHTML=null;
 
     if(!hash || hash ==="#/"){
-        ajax({
+        await ajax({
             url:api.POSTS,
             cbSuccess:(posts)=>{
                 //console.log(posts);
                 let html = "";
                 posts.forEach((post)=> html += PostCard(post));
-                d.querySelector(".loader").style.display = "none";
                 $main.innerHTML=html;
             },
         });
@@ -29,8 +28,7 @@ export function Router(){
         $main.innerHTML="<h2>Sección de Contacto</h2>";
     }else{
         $main.innerHTML="<h2>Aquí cargará el contenido del post previamente seleccionado</h2>";
-
     }
-/* */
-
+    /* */
+    d.querySelector(".loader").style.display = "none";
 }
