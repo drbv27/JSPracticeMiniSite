@@ -1,6 +1,7 @@
 import api from "../helpers/wp_api.js";
 import {ajax} from "../helpers/ajax.js"
 import { PostCard } from "./PostCard.js";
+import { Post } from "./Post.js";
 
 export async function Router(){
     const d = document,
@@ -8,7 +9,7 @@ export async function Router(){
         $main = d.getElementById("main");
 
     let{hash}=location;
-    console.log(hash);
+    //console.log(hash);
 
     $main.innerHTML=null;
 
@@ -27,7 +28,15 @@ export async function Router(){
     } else if(hash === '#/contacto'){
         $main.innerHTML="<h2>Sección de Contacto</h2>";
     }else{
-        $main.innerHTML="<h2>Aquí cargará el contenido del post previamente seleccionado</h2>";
+        await ajax({
+            url:`${api.POST}/${localStorage.getItem("wpPostId")}`,
+            cbSuccess:(post)=>{
+                console.log(post);
+/*                 let html = "";
+                posts.forEach((post)=> html += PostCard(post));
+                $main.innerHTML=html; */
+            },
+        });
     }
     d.querySelector(".loader").style.display = "none";
 }
