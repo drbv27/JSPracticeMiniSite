@@ -32,9 +32,7 @@ export async function Router(){
             url:`${api.POST}/${localStorage.getItem("wpPostId")}`,
             cbSuccess:(post)=>{
                 console.log(post);
-/*                 let html = "";
-                posts.forEach((post)=> html += PostCard(post));
-                $main.innerHTML=html; */
+                $main.innerHTML = Post(post);
             },
         });
     }
