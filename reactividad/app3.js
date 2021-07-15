@@ -37,6 +37,9 @@ const setState = obj=>{
     render();
 }
 
+//Obtenemos una copia inmutable del state
+const getState = ()=> JSON.parse(JSON.stringify(state));
+
 d.addEventListener("DOMContentLoaded",render);
 
 //Estableciendo valores por defecto al state
@@ -45,9 +48,12 @@ setState({
 });
 
 //Mutable state because can modify the state directly makeit one object copy and add element
-const items = state.todoList;
-items.push("Tarea4");
-console.log("Mutable state",state)
+//const items = state.todoList;
+const items = getState();
+//items.push("Tarea4");
+items.todoList.push("Tarea4")
+//console.log("Mutable state",state)
+console.log("Unmutable state",state)
 
 d.addEventListener("submit", e=>{
     if(!e.target.matches("#todo-form")) return false;
@@ -56,9 +62,10 @@ d.addEventListener("submit", e=>{
     const $item = d.getElementById("todo-item");
     if(!$item) return;
 
-    //Update the state
-    state.todoList.push($item.value);
-    render();
+    //Update the state (reactive method)
+    const lastState = getState();
+    lastState.todoList.push($item.value);
+    setState({todoList:lastState.todoList});
 
 
     //Limpiar el input
