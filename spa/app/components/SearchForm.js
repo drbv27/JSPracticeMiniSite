@@ -29,3 +29,11 @@ export function SearchForm(){
 
     return $form;
 }
+
+
+var formulario = document.getElementById('formulario');
+
+document.addEventListener('submit', (e)=>{
+	//e.preventDefault();
+	console.log('Testeando ando');
+});
